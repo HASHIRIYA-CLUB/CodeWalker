@@ -31,12 +31,12 @@ namespace CodeWalker.GameFiles
         {
             get
             {
-                return CellY * 32 + CellX;
+                return CellY * 128 + CellX;
             }
             set
             {
-                CellX = value % 32;
-                CellY = value / 32;
+                CellX = value % 128;
+                CellY = value / 128;
                 UpdateBoundingBox();
             }
         }

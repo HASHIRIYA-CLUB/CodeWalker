@@ -580,7 +580,7 @@ namespace CodeWalker
             this.EnableModsCheckBox.Name = "EnableModsCheckBox";
             this.EnableModsCheckBox.Size = new System.Drawing.Size(88, 17);
             this.EnableModsCheckBox.TabIndex = 68;
-            this.EnableModsCheckBox.Text = "Enable Mods";
+            this.EnableModsCheckBox.Text = "Enable mod (deli bo0$, volpe no0b)";
             this.EnableModsCheckBox.UseVisualStyleBackColor = true;
             this.EnableModsCheckBox.CheckedChanged += new System.EventHandler(this.EnableModsCheckBox_CheckedChanged);
             // 

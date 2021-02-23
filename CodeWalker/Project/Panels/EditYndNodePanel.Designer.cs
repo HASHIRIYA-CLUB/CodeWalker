@@ -895,7 +895,7 @@
             // 
             this.PathNodeAreaIDUpDown.Location = new System.Drawing.Point(78, 12);
             this.PathNodeAreaIDUpDown.Maximum = new decimal(new int[] {
-            1023,
+            4095,
             0,
             0,
             0});
@@ -1487,7 +1487,7 @@
             // 
             this.PathNodeLinkAreaIDUpDown.Location = new System.Drawing.Point(74, 8);
             this.PathNodeLinkAreaIDUpDown.Maximum = new decimal(new int[] {
-            1023,
+            4095,
             0,
             0,
             0});
