@@ -348,11 +348,11 @@ namespace CodeWalker.GameFiles
         public TextHash StreetName { get; set; }
         public ushort Unused4 { get; set; }
         public ushort LinkID { get; set; }
-        public short PositionX { get; set; }
-        public short PositionY { get; set; }
+        public int PositionX { get; set; }
+        public int PositionY { get; set; }
         public FlagsByte Flags0 { get; set; }
         public FlagsByte Flags1 { get; set; }
-        public short PositionZ { get; set; }
+        public int PositionZ { get; set; }
         public FlagsByte Flags2 { get; set; }
         public FlagsByte LinkCountFlags { get; set; }
         public FlagsByte Flags3 { get; set; }
@@ -412,9 +412,9 @@ namespace CodeWalker.GameFiles
             NodeID = (ushort)Xml.GetChildUIntAttribute(node, "NodeID", "value");
             StreetName = XmlYnd.GetTextHash(Xml.GetChildInnerText(node, "StreetName"));
             Vector3 p = Xml.GetChildVector3Attributes(node, "Position");
-            PositionX = (short)(p.X * 4.0f);
-            PositionY = (short)(p.Y * 4.0f);
-            PositionZ = (short)(p.Z * 32.0f);
+            PositionX = (int)(p.X * 4.0f);
+            PositionY = (int)(p.Y * 4.0f);
+            PositionZ = (int)(p.Z * 32.0f);
             Flags0 = (byte)Xml.GetChildUIntAttribute(node, "Flags0", "value");
             Flags1 = (byte)Xml.GetChildUIntAttribute(node, "Flags1", "value");
             Flags2 = (byte)Xml.GetChildUIntAttribute(node, "Flags2", "value");
@@ -477,8 +477,8 @@ namespace CodeWalker.GameFiles
     [TypeConverter(typeof(ExpandableObjectConverter))] public struct NodeJunction
     {
         public short MaxZ { get; set; }
-        public short PositionX { get; set; }
-        public short PositionY { get; set; }
+        public int PositionX { get; set; }
+        public int PositionY { get; set; }
         public short MinZ { get; set; }
         public ushort HeightmapPtr { get; set; }
         public byte HeightmapDimX { get; set; }
@@ -520,8 +520,8 @@ namespace CodeWalker.GameFiles
             float maxz = Xml.GetChildFloatAttribute(node, "MaxZ", "value");
             HeightmapDimX = (byte)Xml.GetChildUIntAttribute(node, "SizeX", "value");
             HeightmapDimY = (byte)Xml.GetChildUIntAttribute(node, "SizeY", "value");
-            PositionX = (short)(p.X * 4.0f);
-            PositionY = (short)(p.Y * 4.0f);
+            PositionX = (int)(p.X * 4.0f);
+            PositionY = (int)(p.Y * 4.0f);
             MinZ = (short)(minz * 32.0f);
             MaxZ = (short)(maxz * 32.0f);
 

@@ -7482,6 +7482,11 @@ namespace CodeWalker
             SubtitleTimer.Enabled = false;
             SubtitleLabel.Visible = false;
         }
+
+        private void StatusStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 
     public enum WorldControlMode

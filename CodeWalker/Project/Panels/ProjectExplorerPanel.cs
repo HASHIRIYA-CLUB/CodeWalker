@@ -32,7 +32,7 @@ namespace CodeWalker.Project.Panels
         public void LoadProjectTree(ProjectFile projectFile)
         {
             ProjectTreeView.Nodes.Clear();
-
+            //System.Diagnostics.Trace.WriteLine($"[LoadProjectTree] CurrentProjFile={projectFile}");
             CurrentProjectFile = projectFile;
             if (CurrentProjectFile == null) return;
 
@@ -804,15 +804,20 @@ namespace CodeWalker.Project.Panels
             {
                 ynd.HasChanged = true;
             }
+            //System.Diagnostics.Trace.WriteLine($"[SetYndHasChanged] ynd!=null: {ynd != null}, NodesCount > 0: {ProjectTreeView.Nodes.Count}");
             if (ProjectTreeView.Nodes.Count > 0)
             {
                 var pnode = ProjectTreeView.Nodes[0];
+                //System.Diagnostics.Trace.WriteLine($"[SetYndHasChanged] pnode: {pnode}");
                 var ynnode = GetChildTreeNode(pnode, "Ynd");
+                //System.Diagnostics.Trace.WriteLine($"[SetYndHasChanged] ynnode: {ynnode}");
                 if (ynnode == null) return;
                 string changestr = changed ? "*" : "";
                 for (int i = 0; i < ynnode.Nodes.Count; i++)
                 {
                     var ynode = ynnode.Nodes[i];
+                    //System.Diagnostics.Trace.WriteLine($"[SetYndHasChanged] i={i}, ynode={ynode}");
+                    //System.Diagnostics.Trace.WriteLine($"[SetYndHasChanged] ynode.Tag={ynode.Tag}, ynd={ynd}, ynd.Name={ynd.Name}");
                     if (ynode.Tag == ynd)
                     {
                         string name = ynd.Name;
@@ -821,6 +826,7 @@ namespace CodeWalker.Project.Panels
                             name = ynd.RpfFileEntry.Name;
                         }
                         ynode.Text = changestr + name;
+                        //System.Diagnostics.Trace.WriteLine($"[SetYndHasChanged] Final text: {ynode.Text}");
                         break;
                     }
                 }

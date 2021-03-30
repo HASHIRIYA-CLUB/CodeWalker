@@ -65,7 +65,7 @@
             // 
             this.YndAreaIDYUpDown.Location = new System.Drawing.Point(206, 18);
             this.YndAreaIDYUpDown.Maximum = new decimal(new int[] {
-            63,
+            47,
             0,
             0,
             0});
@@ -87,7 +87,7 @@
             // 
             this.YndAreaIDXUpDown.Location = new System.Drawing.Point(124, 18);
             this.YndAreaIDXUpDown.Maximum = new decimal(new int[] {
-            63,
+            31,
             0,
             0,
             0});

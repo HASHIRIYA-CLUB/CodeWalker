@@ -31,12 +31,12 @@ namespace CodeWalker.GameFiles
         {
             get
             {
-                return CellY * 128 + CellX;
+                return CellY * 32 + CellX;
             }
             set
             {
-                CellX = value % 128;
-                CellY = value / 128;
+                CellX = value % 32;
+                CellY = value / 32;
                 UpdateBoundingBox();
             }
         }
@@ -784,9 +784,9 @@ namespace CodeWalker.GameFiles
 
         public void SetPosition(Vector3 pos)
         {
-            _RawData.PositionX = (short)(pos.X * 4.0f);
-            _RawData.PositionY = (short)(pos.Y * 4.0f);
-            _RawData.PositionZ = (short)(pos.Z * 32.0f);
+            _RawData.PositionX = (int)(pos.X * 4.0f);
+            _RawData.PositionY = (int)(pos.Y * 4.0f);
+            _RawData.PositionZ = (int)(pos.Z * 32.0f);
 
             Vector3 newpos = pos;
             //newpos.X = _RawData.PositionX / 4.0f;
@@ -906,7 +906,6 @@ namespace CodeWalker.GameFiles
         public bool NegativeOffset { get { return (Flags1.Value >> 7) > 0; } }
         public float LaneOffset { get { return (OffsetValue / 7.0f) * (NegativeOffset ? -0.5f : 0.5f); } }
 
-
         public void Init(YndFile ynd, YndNode node1, YndNode node2, NodeLink link)
         {
             Ynd = ynd;
@@ -924,7 +923,6 @@ namespace CodeWalker.GameFiles
             LinkLength = (byte)Math.Min(255, (Node2.Position - Node1.Position).Length());
         }
 
-
         public void CopyFlags(YndLink link)
         {
             if (link == null) return;
@@ -932,8 +930,6 @@ namespace CodeWalker.GameFiles
             Flags1 = link.Flags1;
             Flags2 = link.Flags2;
         }
-
-
 
         public Color4 GetColour()
         {
@@ -994,10 +990,12 @@ namespace CodeWalker.GameFiles
             return c;
         }
 
-
-
         public override string ToString()
         {
+            //System.Diagnostics.Trace.WriteLine($"Node2: {Node2}");
+            //System.Diagnostics.Trace.WriteLine($"Default: {Node2._RawData.ToString()}");
+            //System.Diagnostics.Trace.WriteLine(Node2._RawData);
+            //return "unk";
             return Node2._RawData.ToString();
         }
     }
@@ -1011,8 +1009,8 @@ namespace CodeWalker.GameFiles
         public YndJunctionHeightmap Heightmap { get; set; }
         public short MaxZ { get; set; }
         public short MinZ { get; set; }
-        public short PositionX { get; set; }
-        public short PositionY { get; set; }
+        public int PositionX { get; set; }
+        public int PositionY { get; set; }
 
         public void Init(YndFile ynd, NodeJunction junc, NodeJunctionRef reff)
         {
