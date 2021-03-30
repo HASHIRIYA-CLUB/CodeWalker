@@ -396,8 +396,7 @@ namespace CodeWalker.World
                     string fname = "nodes" + cell.ID + ".ynd";
                     uint fnhash = JenkHash.GenHash(fname);
                     RpfFileEntry fentry = null;
-                    //System.Diagnostics.Trace.WriteLine($"[InitNodeGrid] cell={cell}, fname={fname}, fnhash={fnhash}, check={yndentries.TryGetValue(fnhash, out fentry)}");
-                    //System.Diagnostics.Trace.WriteLine($"[InitNodeGrid] fentry = {fentry}");
+
                     if (yndentries.TryGetValue(fnhash, out fentry))
                     {
                         cell.Ynd = rpfman.GetFile<YndFile>(fentry);
@@ -406,7 +405,7 @@ namespace CodeWalker.World
                         cell.Ynd.CellX = x;
                         cell.Ynd.CellY = y;
                         cell.Ynd.Loaded = true;
-                        //System.Diagnostics.Trace.WriteLine($"[InitNodeGrid] Area added");
+
                         AllYnds[fnhash] = cell.Ynd;
 
                         #region node flags test
@@ -1998,8 +1997,8 @@ namespace CodeWalker.World
         public SpaceNodeGridCell[,] Cells { get; set; }
         public float CellSize = 512.0f;
         public float CellSizeInv; //inverse of the cell size.
-        public int CellCountX = 32; // DELI: 
-        public int CellCountY = 48; // DELI:
+        public int CellCountX = 32;
+        public int CellCountY = 48;
         public float CornerX = -8192.0f;
         public float CornerY = -8192.0f;
 
@@ -2022,8 +2021,6 @@ namespace CodeWalker.World
         {
             int x = id % CellCountX;
             int y = id / CellCountX;
-            //if (id >= 1024) { System.Diagnostics.Trace.WriteLine($"[GetCell] x={x} | y={y}"); }
-            //if (id >= 1024) { System.Diagnostics.Trace.WriteLine($"Check: {(x >= 0) && (x < CellCountX) && (y >= 0) && (y < CellCountY)}"); }
 
             if ((x >= 0) && (x < CellCountX) && (y >= 0) && (y < CellCountY))
             {
@@ -2035,20 +2032,16 @@ namespace CodeWalker.World
 
         public YndNode GetYndNode(ushort areaid, ushort nodeid)
         {
-            //if (areaid >= 1024) { System.Diagnostics.Trace.WriteLine($"[GetYndNode] areaid={areaid} | nodeid={nodeid}"); }
             var cell = GetCell(areaid);
-            //if (areaid >= 1024) { System.Diagnostics.Trace.WriteLine($"[GetYndNode] cell={cell}"); }
+
             if ((cell == null) || (cell.Ynd == null) || (cell.Ynd.Nodes == null))
             {
-                //if (areaid >= 1024) { System.Diagnostics.Trace.WriteLine($"[GetYndNode] Return null 1"); }
                 return null;
             }
             if (nodeid >= cell.Ynd.Nodes.Length)
             {
-                //if (areaid >= 1024) { System.Diagnostics.Trace.WriteLine($"[GetYndNode] Return null 2"); }
                 return null;
             }
-            //if (areaid >= 1024) { System.Diagnostics.Trace.WriteLine($"[GetYndNode] Return goood, Ynd.Nodes[nodeid]={cell.Ynd.Nodes[nodeid]} | Ynd.Nodes={cell.Ynd.Nodes}"); }
             return cell.Ynd.Nodes[nodeid];
         }
 
@@ -2065,7 +2058,7 @@ namespace CodeWalker.World
         {
             X = x;
             Y = y;
-            ID = y * 32 + x; // DELI: SOMETHING HERE related to Link
+            ID = y * 32 + x;
         }
 
     }

@@ -79,8 +79,6 @@ namespace CodeWalker.Project.Panels
             {
                 populatingui = true;
                 var n = CurrentPathNode.RawData;
-                //System.Diagnostics.Trace.WriteLine($"CurrentPathNode: {CurrentPathNode}");
-                //System.Diagnostics.Trace.WriteLine($"RawData: {CurrentPathNode.RawData}");
                 //YndNodePanel.Enabled = true;
                 PathNodeDeleteButton.Enabled = ProjectForm.YndExistsInProject(CurrentYndFile);
                 PathNodeAddToProjectButton.Enabled = !PathNodeDeleteButton.Enabled;
@@ -594,28 +592,20 @@ namespace CodeWalker.Project.Panels
             YndNode linknode = null;
             ushort areaid = CurrentPathLink._RawData.AreaID;
             ushort nodeid = CurrentPathLink._RawData.NodeID;
-            //System.Diagnostics.Trace.WriteLine($"[UpdatePathNodeLinkage] AreaID={areaid}, NodeID={nodeid}, " +
-                //$"CurrentYndFile.AreaID={CurrentYndFile.AreaID}, check={areaid == CurrentYndFile.AreaID}");
-            //System.Diagnostics.Trace.WriteLine($"[UpdatePathNodeLinkage] CurrentYndFile: {CurrentYndFile}");
             if (areaid == CurrentYndFile.AreaID)
             {
                 //link to the same ynd. find the new node in the current ynd.
-                //System.Diagnostics.Trace.WriteLine($"[UpdatePathNodeLinkage] Nodes: {CurrentYndFile.Nodes}, Length: {CurrentYndFile.Nodes.Length} " +
-                    //$"check_1: {CurrentYndFile.Nodes != null}, check_2: {nodeid < CurrentYndFile.Nodes.Length}");
                 if ((CurrentYndFile.Nodes != null) && (nodeid < CurrentYndFile.Nodes.Length))
                 {
                     linknode = CurrentYndFile.Nodes[nodeid];
-                    //System.Diagnostics.Trace.WriteLine($"[UpdatePathNodeLinkage] true > linknode = {linknode}");
                 }
             }
             else
             {
                 //try lookup the link node from the space.
-                //System.Diagnostics.Trace.WriteLine($"[UpdatePathNodeLinkage] ProjectForm.WorldForm={ProjectForm.WorldForm}, != null: {ProjectForm.WorldForm != null}");
                 if (ProjectForm.WorldForm != null)
                 {
                     linknode = ProjectForm.WorldForm.GetPathNodeFromSpace(areaid, nodeid);
-                    //System.Diagnostics.Trace.WriteLine($"[UpdatePathNodeLinkage] false > linknode = {linknode}");
                 }
             }
 
@@ -975,21 +965,17 @@ namespace CodeWalker.Project.Panels
             if (populatingui) return;
             if (CurrentPathLink == null) return;
             ushort areaid = (ushort)PathNodeLinkAreaIDUpDown.Value;
-            //System.Diagnostics.Trace.WriteLine($"[PathNodeLinkAreaIDUpDown] AreaID: {areaid}");
-            //System.Diagnostics.Trace.WriteLine($"[PathNodeLinkAreaIDUpDown] Raw AreaID: {CurrentPathLink._RawData.AreaID}");
 
             bool change = false;
             lock (ProjectForm.ProjectSyncRoot)
             {
                 if (CurrentPathLink._RawData.AreaID != areaid)
                 {
-                    //System.Diagnostics.Trace.WriteLine($"[PathNodeLinkAreaIDUpDown] CurrentPathLink._RawData.AreaID != areaid");
                     CurrentPathLink._RawData.AreaID = areaid;
                     ProjectForm.SetYndHasChanged(true);
                     change = true;
                 }
             }
-            //System.Diagnostics.Trace.WriteLine($"[PathNodeLinkAreaIDUpDown] Change: {change}");
             if (change)
             {
                 UpdatePathNodeLinkage();

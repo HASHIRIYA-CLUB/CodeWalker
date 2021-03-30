@@ -992,10 +992,6 @@ namespace CodeWalker.GameFiles
 
         public override string ToString()
         {
-            //System.Diagnostics.Trace.WriteLine($"Node2: {Node2}");
-            //System.Diagnostics.Trace.WriteLine($"Default: {Node2._RawData.ToString()}");
-            //System.Diagnostics.Trace.WriteLine(Node2._RawData);
-            //return "unk";
             return Node2._RawData.ToString();
         }
     }

@@ -443,7 +443,6 @@ namespace CodeWalker.Project
         }
         public void ShowEditYndNodePanel(bool promote)
         {
-            //System.Diagnostics.Trace.WriteLine($"[ShowEditYndNodePanel] CurrentPathNode: {CurrentPathNode}");
             ShowPanel(promote,
                 () => { return new EditYndNodePanel(this); }, //createFunc
                 (panel) => { panel.SetPathNode(CurrentPathNode); }, //updateFunc
@@ -7818,7 +7817,6 @@ namespace CodeWalker.Project
             byte[] data = File.ReadAllBytes(filename);
 
             ynd.Load(data);
-            //System.Diagnostics.Trace.WriteLine($"[LoadYndFromFiles] ynd={ynd} | WorldForm={WorldForm} | check={WorldForm != null}");
 
             if (WorldForm != null)
             {
